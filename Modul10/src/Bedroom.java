@@ -2,14 +2,16 @@ public class Bedroom extends Room{
     private int amountOfBeds;
     private String roomType;
 
-    public Bedroom(String roomType, int amountOfBeds, int size, int amountOfDoors, int amountOfWindows) {
+    //specific creator
+    public Bedroom(int amountOfBeds, String roomType, int size, int amountOfDoors, int amountOfWindows) {
         super(roomType, size, amountOfDoors, amountOfWindows);
         this.amountOfBeds = amountOfBeds;
-        this.roomType = "Bedroom";
+        this.roomType = "bedroom";
     }
 
+    //random creator
     public Bedroom() {
-        super("Bedroom", (int) Math.round(Math.random())*30 + 5, (int) Math.round(Math.random()) +1, (int) Math.round(Math.random())*3 + 1);
+        super("bedroom", (int) Math.round((Math.random())*30 + 5), (int) Math.round((Math.random()) +1 ), (int) Math.round((Math.random())*3 + 1));
         this.amountOfBeds = (int) Math.round(Math.random()) + 1;
     }
 

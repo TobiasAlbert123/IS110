@@ -15,6 +15,10 @@ public class Room {
 
     }
 
+    public String getRoomType() {
+        return roomType;
+    }
+
     public void PrintStats() {
         System.out.printf("\ntype: %s\n", roomType);
         System.out.printf("size: %dm^2\n", size);

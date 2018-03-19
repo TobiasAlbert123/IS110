@@ -1,6 +1,4 @@
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.lang.Integer;
 
 public class Main {
     static House myhouse = new House(0);
@@ -11,7 +9,6 @@ public class Main {
 
     public static void Scanner() {
         Scanner sc = new Scanner(System.in);
-
         boolean commandMessage = true;
 
         boolean running = true;
@@ -20,6 +17,7 @@ public class Main {
             String separator = "_";
             if (commandMessage) {
                 System.out.printf("Type a command (use underscore '%s' as separator):\n", separator);
+                //System.out.println(separator);
             }
 
             //takes input from console and converts to lowercase
@@ -27,58 +25,45 @@ public class Main {
             String[] input = originalnput.split(separator);
 
             switch (input[0]) {
-                case "setrooms":    System.out.printf(
-                                        "Amount of rooms set to %d\n", myhouse.setAmountOfRooms(Integer.parseInt(input[1]))
-                                    );
-                                    break;
+                case "setrooms":
+                    try {
+                        System.out.printf(
+                                "Amount of rooms set to %d\n", myhouse.setAmountOfRooms(Integer.parseInt(input[1]))
+                        );
+                    } catch (ArrayIndexOutOfBoundsException ex) {
+                        System.out.println("Amount of rooms not defined");
+                    }
+                    break;
+
 
                 case "getrooms":    System.out.printf(
-                                        "There are %s rooms in the house", myhouse.getAmountOfRooms()
+                                        "There are %s rooms in the house\n", myhouse.getAmountOfRooms()
                                     );
                                     break;
 
-                case "makenew":     String toBeMade = input[1];
-                                    int amountToBeMade = 1;
-                                    if (input.length >= 3) {
-                                        try {
-                                            amountToBeMade = Integer.parseInt(input[2]);
-                                        } catch (NumberFormatException ex) {
-                                            System.out.printf("'%s' is not an integer, making default amount of rooms (%d)\n", input[2], amountToBeMade);
-                                            System.out.println("Please enter an integer next time");
-                                        }
-                                    }
-                                    switch(toBeMade) {
-                                        case "bedroom": for (int i = 0; i < amountToBeMade; i++) {
-                                            Bedroom newBedRoom = new Bedroom();
-                                            myhouse.rooms.add(newBedRoom);
-                                            myhouse.bedrooms.add(newBedRoom);
-                                        }
-                                        break;
-                                        case "bathroom": for (int i = 0; i < amountToBeMade; i++) {
-                                            Bathroom newBathRoom = new Bathroom();
-                                            myhouse.rooms.add(newBathRoom);
-                                            myhouse.bathrooms.add(newBathRoom);
-                                        }
-                                    }
-                                break;
+                case "makenew":
+                    if (input.length == 2) {
+                        myhouse.makeNewRoom(input[1], "1");
+                    } else {
+                        try {
+                            myhouse.makeNewRoom(input[1], input[2]);
+                        } catch (ArrayIndexOutOfBoundsException ex) {
+                            System.out.println("Please use this command with room type");
+                        }
+                    }
 
                 case "makespecific":      //todo
                                 break;
 
-                case "printroom":   String typeToPrint = "all";
+                case "printroom": String typeToPrint = "";
+                                if (input.length == 1) {
+                                    typeToPrint = "all";
+                                } else {
                                     if (input.length >= 2) {
                                         typeToPrint = input[1];
                                     }
-                                    switch (typeToPrint) {
-                                        case "all": for (Room oneRoom: myhouse.rooms) {
-                                            oneRoom.PrintStats();
-                                        }
-                                        break;
-                                        case "bedroom": for (Bedroom oneBedroom: myhouse.bedrooms) {
-
-                                        }
-                                        default:    System.out.printf("Could not print rooms: %s\n", typeToPrint);
-                                    }
+                                }
+                                    myhouse.printRoom(typeToPrint);
                                 break;
 
 
