@@ -1,17 +1,16 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
 public class House {
-    private int amountOfRooms;
-    public ArrayList<Room> rooms;
+    private ArrayList<Room> rooms;
     private Random randomPicker;
 
     public House(int amountOfRooms) {
         randomPicker = new Random();
         rooms = new ArrayList<>();
         setAmountOfRooms(amountOfRooms);
-        this.amountOfRooms = rooms.size();
     }
 
     public int setAmountOfRooms(int amountOfRooms) {
@@ -21,20 +20,17 @@ public class House {
             String type = roomtypes[index];
             makeNewRoom(type, "1");
         }
-        this.amountOfRooms = rooms.size();
-        return amountOfRooms;
+        return rooms.size();
     }
 
     public int getAmountOfRooms() {
-        this.amountOfRooms = rooms.size();
-        return amountOfRooms;
+        return rooms.size();
     }
 
-    public void makeNewRoom(String args1, String args2) {
-        String type = args1;
+    public void makeNewRoom(String type, String amountString) {
         int amount = 1;
         try {
-            amount = Integer.parseInt(args2);
+            amount = Integer.parseInt(amountString);
         } catch (NumberFormatException ex) {
 
         }
@@ -55,15 +51,39 @@ public class House {
 
     public void makeSpecific(String type) {
         Scanner specs = new Scanner(System.in);
-        String originalinput = specs.next().toLowerCase();
-        switch (type) {
-            case "bedroom":
-                break;
-            case "bathroom":
-                break;
-            default: System.out.println("Room type not recognised");
+        try {
+            System.out.print("Size in m^2: ");
+            int size = specs.nextInt();
+            System.out.print("\nDoors: ");
+            int doors = specs.nextInt();
+            System.out.print("\nWindows: ");
+            int windows = specs.nextInt();
+            switch (type) {
+                case "bedroom":
+                    System.out.println("Amount of beds?");
+                    int beds = specs.nextInt();
+                    Room newBedroom = new Bedroom(beds, type, size, doors, windows);
+                    break;
+                case "bathroom":
+                    break;
+                default:
+                    System.out.println("Room type not recognised");
+            }
+        } catch (InputMismatchException ex) {
+            System.out.println("Wrong format detected, please try again");
         }
 
+    }
+
+    public void deleteRooms(String amount) {
+        try {
+            int intamount = Integer.parseInt(amount);
+            for (int i = 0; i < intamount && rooms.size() > 0; i++) {
+                rooms.remove(0);
+            }
+        } catch (NumberFormatException ex) {
+            System.out.printf("'%s' is not an integer, please try again\n", amount);
+        }
     }
 
     public void printRoom(String type) {

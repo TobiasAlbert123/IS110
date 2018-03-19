@@ -1,4 +1,4 @@
-public class Room {
+public abstract class Room {
     private int size;
     private int amountOfDoors;
     private int amountOfWindows;
