@@ -41,11 +41,11 @@ public class House {
         for (int i = 0; i < amount; i++) {
             switch (type) {
                 case "bedroom":
-                    Bedroom newBedroom = new Bedroom();
+                    Room newBedroom = new Bedroom();
                     rooms.add(newBedroom);
                     break;
                 case "bathroom":
-                    Bathroom newBathroom = new Bathroom();
+                    Room newBathroom = new Bathroom();
                     rooms.add(newBathroom);
                     break;
                 default: System.out.println("Room type not recognised");
