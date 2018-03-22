@@ -14,7 +14,7 @@ public class Main {
         boolean running = true;
         while (running) {
 
-            String separator = "_";
+            String separator = "\\s+";
             if (commandMessage) {
                 System.out.printf("Type a command (use underscore '%s' as separator):\n", separator);
                 //System.out.println(separator);
@@ -23,6 +23,8 @@ public class Main {
             //takes input from console and converts to lowercase
             String originalnput = sc.next().toLowerCase();
             String[] input = originalnput.split(separator);
+            System.out.println(input[0]);
+            System.out.println(input[1]);
 
             switch (input[0]) {
                 case "setrooms":

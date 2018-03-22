@@ -32,7 +32,7 @@ public class House {
         try {
             amount = Integer.parseInt(amountString);
         } catch (NumberFormatException ex) {
-
+            System.out.printf("Amount not recognised, making default %d room(s)", amount);
         }
         for (int i = 0; i < amount; i++) {
             switch (type) {
@@ -63,8 +63,25 @@ public class House {
                     System.out.println("Amount of beds?");
                     int beds = specs.nextInt();
                     Room newBedroom = new Bedroom(beds, type, size, doors, windows);
+                    rooms.add(newBedroom);
                     break;
                 case "bathroom":
+                    System.out.println("Has shower?");
+                    boolean shower;
+                    //String hasShower = specs.next().toLowerCase();
+                    switch (specs.next().toLowerCase()) {
+                        case "true":
+                            shower = true;
+                            break;
+                        case "false":
+                            shower = false;
+                            break;
+                        default:
+                            System.out.println("Only true or false is accepted, please try again");
+                            return;
+                    }
+                    Room newBathroom = new Bathroom(shower, type, size, doors, windows);
+
                     break;
                 default:
                     System.out.println("Room type not recognised");
@@ -75,14 +92,14 @@ public class House {
 
     }
 
-    public void deleteRooms(String amount) {
+    public void deleteRooms(String amountString) {
         try {
-            int intamount = Integer.parseInt(amount);
-            for (int i = 0; i < intamount && rooms.size() > 0; i++) {
+            int amount = Integer.parseInt(amountString);
+            for (int i = 0; i < amount && rooms.size() > 0; i++) {
                 rooms.remove(0);
             }
         } catch (NumberFormatException ex) {
-            System.out.printf("'%s' is not an integer, please try again\n", amount);
+            System.out.printf("'%s' is not an integer, please try again\n", amountString);
         }
     }
 
@@ -105,7 +122,7 @@ public class House {
                             rooms.get(i).PrintStats();
                         }
                         break;
-                    default: System.out.printf("Could not recognize %s as a roomtype to print\n", type);
+                    default: System.out.printf("Could not recognize '%s' as a roomtype to print\n", type);
                     return;
                 }
             }
