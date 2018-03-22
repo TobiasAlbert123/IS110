@@ -59,15 +59,15 @@ public class House {
         Scanner specs = new Scanner(System.in);
         try {
             System.out.print("Size in m^2: ");
-            int size = specs.nextInt();
+            int size = 22;//specs.nextInt();
             System.out.print("\nDoors: ");
-            int doors = specs.nextInt();
+            int doors = 2;//specs.nextInt();
             System.out.print("\nWindows: ");
-            int windows = specs.nextInt();
+            int windows = 1;//specs.nextInt();
             switch (type) {
                 case "bedroom":
                     System.out.println("Amount of beds?");
-                    int beds = specs.nextInt();
+                    int beds = 1;//specs.nextInt();
                     Room newBedroom = new Bedroom(beds, type, size, doors, windows);
                     rooms.add(newBedroom);
                     break;
@@ -99,7 +99,7 @@ public class House {
         return true;
     }
 
-    public void printRoom(String type) {
+    public boolean printRoom(String type) {
         if (rooms.size() == 0) {
             System.out.println("There are currently 0 rooms.");
         } else {
@@ -118,10 +118,12 @@ public class House {
                             rooms.get(i).PrintStats();
                         }
                         break;
-                    default: System.out.printf("Could not recognize %s as a roomtype to print\n", type);
-                    return;
+                    default:
+                        System.out.printf("Could not recognize %s as a roomtype to print\n", type);
+                        return false;
                 }
             }
         }
+        return true;
     }
 }

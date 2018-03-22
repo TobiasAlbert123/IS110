@@ -13,6 +13,7 @@ import org.junit.Test;
  */
 public class HouseTest
 {
+    private House h;
     /**
      * Default constructor for test class HouseTest
      */
@@ -28,6 +29,7 @@ public class HouseTest
     @Before
     public void setUp()
     {
+        h = new House(0);
     }
 
     /**
@@ -42,27 +44,28 @@ public class HouseTest
     
     @Test
     public void testSetAmountOfrooms() {
-        House h = new House(0);
         assertEquals(true, h.setAmountOfRooms(5));
         assertEquals(5, h.getAmountOfRooms());
     }
     
     @Test
     public void testMakeNewRoom() {
-        House h = new House(0);
         assertEquals(true, h.makeNewRoom("bedroom", "1"));
         assertEquals(1, h.getAmountOfRooms());
     }
     
     @Test
     public void testMakeSpecific() {
-        House h = new House(0);
         assertEquals(true, h.makeSpecific("bedroom"));
     }
     
     @Test
     public void testNegativeRooms() {
-        House h = new House(0);
         assertEquals(false, h.setAmountOfRooms(-1));
+    }
+    
+    @Test
+    public void testPrintRoom() {
+        assertEquals(true, h.printRoom("all"));
     }
 }
