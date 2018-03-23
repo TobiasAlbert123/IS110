@@ -6,11 +6,77 @@ import java.util.Scanner;
 public class House {
     private ArrayList<Room> rooms;
     private Random randomPicker;
+    private ArrayList<String[]> rows;
 
     public House(int amountOfRooms) {
         randomPicker = new Random();
         rooms = new ArrayList<>();
         setAmountOfRooms(amountOfRooms);
+        rows = new ArrayList<>();
+    }
+
+    public void houseSetup() {
+        String[] row0 = new String[5];
+        String[] row1 = {"B", "B", "|", "K", "K"};
+        String[] row2 = {"B", "B", "|", "K", "K"};
+        String[] row3 = {"B", "B", "|", "K", "K"};
+        String[] row4 = {"B", "B", "|", "K", "K"};
+        String[] row5 = {"B", "B", "|", "K", "K"};
+        rows.add(row1);
+        rows.add(row2);
+        rows.add(row3);
+        rows.add(row4);
+        rows.add(row5);
+    }
+
+    public void houseMaker(int amountOfRows) {
+        for (int i = 0; i < amountOfRows; i++) {
+            String row = "";
+            switch (i) {
+                case 0:
+                    row = "_ _ _ _ _";
+                    break;
+
+                case 1:
+                    row = "B B | K K";
+                    break;
+
+                case 2:
+                    row = "- H H H -";
+                    break;
+
+                default:
+                    row = "H H H H H";
+            }
+            String[] splitRow = row.split("");
+            for (int j = 0; j < splitRow.length; j++) {
+                if (j == 0) {
+                    System.out.print("|");
+                }
+                System.out.printf(" %s", splitRow[j]);
+            }
+            System.out.print(" |\n");
+        }
+    }
+
+    public void newHouseRow() {
+
+    }
+
+    public void printHouse() {
+        houseSetup();
+        for (int i = 0; i < rows.size(); i++) {
+            for (int j = 0; j < rows.get(i).length; j++) {
+                if (j == 0) {
+                    System.out.print("|");
+                }
+                System.out.printf(" %s", rows.get(i)[j]);
+                if (j == 4) {
+                    System.out.print(" |");
+                }
+            }
+            System.out.println();
+        }
     }
 
     public int setAmountOfRooms(int amountOfRooms) {

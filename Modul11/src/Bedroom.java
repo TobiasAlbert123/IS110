@@ -15,6 +15,10 @@ public class Bedroom extends Room{
         this.amountOfBeds = (int) Math.round(Math.random()) + 1;
     }
 
+    public boolean heatedFloor() {
+        return false;
+    }
+
     public void PrintStats() {
         super.PrintStats();
         System.out.printf("Number of beds: %d\n", amountOfBeds);

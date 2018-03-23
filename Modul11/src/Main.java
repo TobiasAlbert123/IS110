@@ -47,6 +47,11 @@ public class Main {
                     );
                     break;
 
+                case "printhouse":
+                    //myhouse.printHouse();
+                    myhouse.houseMaker(5);
+                    break;
+
                 case "makenew":
                     if (input.length == 2) {
                         myhouse.makeNewRoom(input[1], "1");

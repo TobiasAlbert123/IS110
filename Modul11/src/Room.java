@@ -1,18 +1,33 @@
-public abstract class Room {
+import java.util.Random;
+
+public abstract class Room implements Floor{
     private int size;
     private int amountOfDoors;
     private int amountOfWindows;
     private String roomType;
+    private String floorType;
 
     public Room(String roomType, int size, int amountOfDoors, int amountOfWindows) {
         this.roomType = roomType;
         this.size = size;
         this.amountOfDoors = amountOfDoors;
         this.amountOfWindows = amountOfWindows;
+        this.floorType = setFloorType();
     }
 
     public Room() {
 
+    }
+
+    public String setFloorType() {
+        String[] types = {"wood", "stone", "granite", "plastic"};
+        Random r = new Random();
+        String floorType = types[r.nextInt()];
+        return floorType;
+    }
+
+    public boolean containsStairs() {
+        return false;
     }
 
     public int getSize() {
