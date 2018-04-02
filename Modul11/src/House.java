@@ -7,12 +7,14 @@ public class House {
     private ArrayList<Room> rooms;
     private Random randomPicker;
     private ArrayList<String[]> rows;
+    private ArrayList<Inhabitant> inhabitants;
 
     public House(int amountOfRooms) {
         randomPicker = new Random();
         rooms = new ArrayList<>();
         setAmountOfRooms(amountOfRooms);
         rows = new ArrayList<>();
+        inhabitants = new ArrayList<>();
     }
 
     public void houseSetup() {
@@ -233,5 +235,63 @@ public class House {
                 }
             }
         }
+    }
+
+    public void printPeople(String type) {
+        if (inhabitants.size() == 0) {
+            System.out.println("There are currently 0 people living in the house");
+        } else  {
+            for (Inhabitant oneInhabitant : inhabitants) {
+                switch (type.toLowerCase()) {
+                    case "all":
+                        oneInhabitant.printInfo();
+                        break;
+
+                    case "male":
+                        if (oneInhabitant.getGender().contains("male")) {
+                            oneInhabitant.printInfo();
+                        }
+                        break;
+
+                    case "female":
+                        if (oneInhabitant.getGender().contains("female")) {
+                            oneInhabitant.printInfo();
+                        }
+                        break;
+
+                    default:
+                        System.out.println("Person type not recognised, please use 'all', 'male' or 'female'");
+                }
+
+            }
+        }
+    }
+
+    public void makeInhabitant(String sAmount) {
+        int amount = Integer.parseInt(sAmount);
+        for (int i = 0; i < amount; i++) {
+            Inhabitant newInhabitant = new Inhabitant();
+            inhabitants.add(newInhabitant);
+        }
+    }
+
+    public void nameCheck(String name) {
+        int sameName = 0;
+        int equally = 0;
+        for (int i = 0; i < inhabitants.size(); i++) {
+            if (inhabitants.get(i).getName().toLowerCase().equals(name.toLowerCase())) {
+                for (int j = 0; j < inhabitants.size(); j++) {
+                    if (inhabitants.get(i).equals(inhabitants.get(j))) {
+                        equally++;
+                    }
+                    /*if (inhabitants.get(i) == inhabitants.get(j)) {
+                        equally++;
+                    }*/
+                }
+                sameName++;
+            }
+        }
+        System.out.printf("%d equal objects found\n", equally);
+        System.out.printf("%d people with the name %s", sameName, name);
     }
 }
