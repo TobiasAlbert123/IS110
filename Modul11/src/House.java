@@ -8,6 +8,7 @@ public class House {
     private Random randomPicker;
     private ArrayList<String[]> rows;
     private ArrayList<Inhabitant> inhabitants;
+    private ArrayList<String> names;
 
     public House(int amountOfRooms) {
         randomPicker = new Random();
@@ -15,6 +16,7 @@ public class House {
         setAmountOfRooms(amountOfRooms);
         rows = new ArrayList<>();
         inhabitants = new ArrayList<>();
+        names = new ArrayList<>();
     }
 
     public void houseSetup() {
@@ -272,8 +274,17 @@ public class House {
         for (int i = 0; i < amount; i++) {
             Inhabitant newInhabitant = new Inhabitant();
             inhabitants.add(newInhabitant);
+            names.add(newInhabitant.getName());
         }
     }
+
+    public void printNames() {
+        for (String name : names) {
+            System.out.println(name);
+        }
+    }
+
+
 
     public void nameCheck(String name) {
         int sameName = 0;

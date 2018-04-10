@@ -116,6 +116,11 @@ public class Main {
 
                     case "namecheck":
                         myhouse.nameCheck(input[1]);
+                        break;
+
+                    case "printnames":
+                        myhouse.printNames();
+                        break;
 
                         //Sets commandMessage to the value opposite of itself
                     case "cmd":

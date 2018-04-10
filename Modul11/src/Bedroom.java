@@ -23,4 +23,8 @@ public class Bedroom extends Room{
         super.PrintStats();
         System.out.printf("Number of beds: %d\n", amountOfBeds);
     }
+
+    public void printMaster() {
+        System.out.println("This is the master bedroom");
+    }
 }
