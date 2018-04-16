@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public abstract class Room implements Floor{
+public abstract class Room implements RoomProperties{
     private int size;
     private int amountOfDoors;
     private int amountOfWindows;
@@ -22,16 +22,16 @@ public abstract class Room implements Floor{
     public String setFloorType() {
         String[] types = {"wood", "stone", "granite", "plastic"};
         Random r = new Random();
-        String floorType = types[r.nextInt()];
+        String floorType = types[r.nextInt(types.length)];
         return floorType;
-    }
-
-    public boolean containsStairs() {
-        return false;
     }
 
     public int getSize() {
         return this.size;
+    }
+
+    public String getFloorType() {
+        return this.floorType;
     }
 
     public int getAmountOfDoors() {

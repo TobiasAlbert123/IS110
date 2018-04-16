@@ -85,12 +85,23 @@ public class House {
 
     public int setAmountOfRooms(int amountOfRooms) {
         String[] roomtypes = {"bedroom", "bathroom"};
-        for (int i = 0; i < amountOfRooms; i++) {
-            int index = randomPicker.nextInt(roomtypes.length);
-            String type = roomtypes[index];
-            makeNewRoom(type, "1");
+
+        if (amountOfRooms > rooms.size()) {
+            for (int i = 0; i < amountOfRooms; i++) {
+                int index = randomPicker.nextInt(roomtypes.length);
+                String type = roomtypes[index];
+                makeNewRoom(type, "1");
+            }
+            return rooms.size();
+        } else if (amountOfRooms < rooms.size()) {
+            for (int i = 0; i < amountOfRooms; i++) {
+                rooms.remove(rooms.get(i));
+            }
+            return rooms.size();
+        } else {
+            System.out.printf("You already have %d rooms\n", amountOfRooms);
         }
-        return rooms.size();
+        return -1;
     }
 
     public int getAmountOfRooms() {

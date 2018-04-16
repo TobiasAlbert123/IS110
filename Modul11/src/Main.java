@@ -14,31 +14,39 @@ public class Main {
         boolean running = true;
         while (running) {
 
-            String separator = "_";
+            String separator = "\\s+";
             if (commandMessage) {
                 System.out.printf("Type a command (use underscore '%s' as separator):\n", separator);
                 //System.out.println(separator);
             }
 
-            //TRY:
-            //scanner contains
-
             //takes input from console and converts to lowercase
-            String originalnput = sc.next().toLowerCase();
+            String originalnput = sc.nextLine().toLowerCase();
             String[] input = originalnput.split(separator);
-            //System.out.println(input[0]);
-            //System.out.println(input[1]);
 
+            /* For debugging
+            System.out.printf("input size: %d\n", input.length);
+            for (int i = 0; i < input.length; i++) {
+                System.out.println(input[i]);
+                input[i].trim();
+            }*/
 
             try {
                 switch (input[0]) {
+                    case "lol":
+                        System.out.println(myhouse.hashCode());
+
+                        break;
+
                     case "setrooms":
+                        int rooms = 0;
                         try {
-                            System.out.printf(
-                                    "Amount of rooms set to %d\n", myhouse.setAmountOfRooms(Integer.parseInt(input[1]))
-                            );
+                            rooms = myhouse.setAmountOfRooms(Integer.valueOf(input[1]));
                         } catch (ArrayIndexOutOfBoundsException ex) {
-                            System.out.println("Amount of rooms not defined");
+                            System.out.println("Amount of rooms not defsrtjhsrtjined / " + ex);
+                        }
+                        if (rooms != -1) {
+                            System.out.printf("Amount of rooms set to %d\n", rooms);
                         }
                         break;
 

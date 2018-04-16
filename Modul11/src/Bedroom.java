@@ -15,8 +15,19 @@ public class Bedroom extends Room{
         this.amountOfBeds = (int) Math.round(Math.random()) + 1;
     }
 
-    public boolean heatedFloor() {
-        return false;
+    @Override
+    public String getFloorType() {
+        return super.getFloorType();
+    }
+
+    @Override
+    public int getAmountOfDoors() {
+        return super.getAmountOfDoors();
+    }
+
+    @Override
+    public int getAmountOfWindows() {
+        return super.getAmountOfWindows();
     }
 
     public void PrintStats() {
