@@ -46,10 +46,13 @@ public abstract class Room implements RoomProperties{
         return this.roomType;
     }
 
+    public String getShower() {
+        return "lol";
+    }
 
 
     public void PrintStats() {
-        System.out.printf("\ntype: %s\n", roomType);
+        System.out.printf("\ntype: %s\n", getRoomType());
         System.out.printf("size: %dm^2\n", size);
         System.out.printf("doors: %d\n", amountOfDoors);
         System.out.printf("windows: %d\n", amountOfWindows);

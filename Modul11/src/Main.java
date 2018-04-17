@@ -14,7 +14,7 @@ public class Main {
         boolean running = true;
         while (running) {
 
-            String separator = "\\s+";
+            String separator = " ";
             if (commandMessage) {
                 System.out.printf("Type a command (use underscore '%s' as separator):\n", separator);
                 //System.out.println(separator);
@@ -66,11 +66,12 @@ public class Main {
                         if (input.length == 2) {
                             myhouse.makeNewRoom(input[1], "1");
                         } else {
-                            try {
+                            myhouse.makeNewRoom(input[1], input[2]);
+                            /*try {
                                 myhouse.makeNewRoom(input[1], input[2]);
                             } catch (ArrayIndexOutOfBoundsException ex) {
                                 System.out.println("Please use this command with room type");
-                            }
+                            }*/
                         }
                         break;
 

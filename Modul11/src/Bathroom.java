@@ -42,6 +42,11 @@ public class Bathroom extends Room{
         return super.getAmountOfWindows();
     }
 
+    /*@Override
+    public boolean getShower() {
+        return this.hasShower;
+    }*/
+
     public boolean heatedFloor() {
         double r = Math.random();
         if (r >= 0.5) {
@@ -49,6 +54,7 @@ public class Bathroom extends Room{
         }
         return false;
     }
+
 
     public void PrintStats() {
         super.PrintStats();
