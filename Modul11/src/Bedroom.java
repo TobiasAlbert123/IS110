@@ -30,6 +30,11 @@ public class Bedroom extends Room{
         return super.getAmountOfWindows();
     }
 
+    @Override
+    public String getWindowType() {
+        return "nothing";
+    }
+
     public void PrintStats() {
         super.PrintStats();
         System.out.printf("Number of beds: %d\n", amountOfBeds);

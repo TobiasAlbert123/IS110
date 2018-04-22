@@ -73,7 +73,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Bedroom.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Bedroom.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Bedroom.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="391">
@@ -156,7 +156,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -257,6 +257,7 @@
       <workItem from="1523355470927" duration="821000" />
       <workItem from="1523898388231" duration="2999000" />
       <workItem from="1523901931196" duration="6214000" />
+      <workItem from="1524406838155" duration="937000" />
     </task>
     <servers />
   </component>
