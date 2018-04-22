@@ -15,6 +15,13 @@ public class Bedroom extends Room{
         this.amountOfBeds = (int) Math.round(Math.random()) + 1;
     }
 
+
+    public void addItem() {
+        Item newItem = new Telephone();
+        super.addItem(newItem);
+    }
+
+
     @Override
     public String getFloorType() {
         return super.getFloorType();
@@ -30,12 +37,13 @@ public class Bedroom extends Room{
         return super.getAmountOfWindows();
     }
 
+    /* Override error example
     @Override
     public String getWindowType() {
         return "nothing";
     }
-
-    public void PrintStats() {
+    */
+    public void printStats() {
         super.PrintStats();
         System.out.printf("Number of beds: %d\n", amountOfBeds);
     }

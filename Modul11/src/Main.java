@@ -33,6 +33,12 @@ public class Main {
 
             try {
                 switch (input[0]) {
+                    case "hashcodes":
+                        for (int i = 0; i < myhouse.getAmountOfRooms(); i++) {
+                            System.out.println(myhouse.getARoom(i).hashCode());
+                        }
+                        break;
+
                     case "lol":
                         System.out.println(myhouse.hashCode());
 

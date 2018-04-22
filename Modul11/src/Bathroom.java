@@ -27,6 +27,13 @@ public class Bathroom extends Room{
         return floorType;
     }
 
+
+    public void addItem() {
+        Item newItem = new Cup();
+        super.addItem(newItem);
+    }
+
+
     @Override
     public String getFloorType() {
         return super.getFloorType();
@@ -56,7 +63,7 @@ public class Bathroom extends Room{
     }
 
 
-    public void PrintStats() {
+    public void printStats() {
         super.PrintStats();
         System.out.printf("Has shower: %b\n", hasShower);
     }

@@ -104,6 +104,10 @@ public class House {
         return -1;
     }
 
+    public Room getARoom(int i) {
+        return rooms.get(i);
+    }
+
     public int getAmountOfRooms() {
         return rooms.size();
     }
@@ -131,6 +135,7 @@ public class House {
     }
 
     public void makeSpecific(String type) {
+        boolean ok = rooms.get(1).equals(rooms.get(1));
         Scanner specs = new Scanner(System.in);
         try {
             System.out.print("Size in m^2: ");
