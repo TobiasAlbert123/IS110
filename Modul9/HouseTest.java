@@ -68,4 +68,11 @@ public class HouseTest
     public void testPrintRoom() {
         assertEquals(true, h.printRoom("all"));
     }
+
+    @Test
+    public void testGetAmountOfRooms()
+    {
+        assertEquals(0, h.getAmountOfRooms());
+    }
 }
+
