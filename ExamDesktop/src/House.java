@@ -1,9 +1,10 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ *
+ */
 public class House {
     private ArrayList<Room> rooms;
     private ArrayList<BathRoom> bathRooms;
@@ -17,22 +18,22 @@ public class House {
         doubleBedRooms = new ArrayList<>();
     }
 
-    /*
-    Returns amount of rooms
+    /**
+     * @return amount of rooms
      */
     public int getAmountOfRooms() {
         return rooms.size();
     }
 
-    /*
-    Returns array of possible roomtypes
+    /**
+    *Returns array of possible roomtypes
      */
     public final String[] getAllTypes() {
         String[] types = {"bathroom", "singlebedroom", "doublebedroom"};
         return types;
     }
 
-    /*
+    /**
     checks if written type is valid
      */
     public boolean isAType(String type) {
@@ -45,7 +46,7 @@ public class House {
         return false;
     }
 
-    /*
+    /**
     adds different rooms to different lists
      */
     public void addRoomsToLists() {
@@ -65,7 +66,7 @@ public class House {
         }
     }
 
-    /*
+    /**
     Makes a random room of type
      */
     public void makeRoom(String type) {
@@ -94,7 +95,7 @@ public class House {
         }
     }
 
-    /*
+    /**
     Generates 'amount' of random rooms
      */
     public void makeRandomRooms(int amount) {
@@ -105,12 +106,14 @@ public class House {
         }
     }
 
-    /*
-    Sets all variables in a room by user input, used in editRoom() and makeSpecificRoom()
+    /**
+     * Sets all variables in a room by user input, used in editRoom() and makeSpecificRoom()
+     * @param type type of room to be made
+     * @return the room that has been created
      */
     public Room setRoomProperties(String type) {
         //room and scanner initialized
-        Room r;
+        Room room;
         Scanner sc = new Scanner(System.in);
 
         //size
@@ -130,24 +133,24 @@ public class House {
             case "bathroom":
                 System.out.printf("Shower? (true / false):");
                 boolean shower = sc.nextBoolean();
-                r = new BathRoom(size, doors, windows, shower);
+                room = new BathRoom(size, doors, windows, shower);
                 break;
 
             case "singlebedroom":
-                r = new SingleBedRoom(size, doors, windows);
+                room = new SingleBedRoom(size, doors, windows);
                 break;
 
             case "doublebedroom":
-                r = new DoubleBedRoom(size, doors, windows);
+                room = new DoubleBedRoom(size, doors, windows);
                 break;
 
             default:
                 return null;
         }
-        return r;
+        return room;
     }
 
-    /*
+    /**
     Makes a specific room
      */
     public void makeSpecificRoom() {
@@ -169,8 +172,9 @@ public class House {
         }
     }
 
-    /*
-    Edits a room by index
+    /**
+     * Edits a room by index
+     * @param index index number of room to be edited in ArrayList
      */
     public void editRoom(int index) {
         Scanner sc = new Scanner(System.in);
@@ -180,8 +184,9 @@ public class House {
         r.printRoom();
     }
 
-    /*
+    /**
     Sets arraylist of rooms to size 'amount'
+     * @param amount sets number of rooms to this
      */
     public void setAmountOfRooms(int amount) {
         //does nothing and returns if negative number
@@ -189,16 +194,19 @@ public class House {
             System.out.println("Number must be positive. You tried: " + amount);
             return;
         }
-        //does nothing
+            //does nothing if amount is the same
             if (amount == rooms.size()) {
                 System.out.printf("You already have %d rooms!\n", amount);
+                return;
 
-            } else if (amount < rooms.size()) {
-                for (int i = 0; i < amount; i++) {
+            } else if (amount < rooms.size()) { //removes index 0 until rooms.size is amount
+                for (int i = 0;  amount < rooms.size(); i++) {
                     rooms.remove(0);
                 }
-            } else {
-                makeRandomRooms(amount);
+                System.out.printf("Now at %d rooms\n", rooms.size());
+            } else {    //makes amount-rooms.size rooms
+                makeRandomRooms(amount-rooms.size());
+                System.out.printf("Now at %d rooms\n", rooms.size());
             }
     }
 
@@ -287,5 +295,44 @@ public class House {
                 }
                 break;
         }
+    }
+
+    /*
+    General info
+     */
+    public void printInfo() {
+        //adds different rooms into different lists
+        addRoomsToLists();
+
+        //variable handling for easier overview
+        int singleBed = singleBedRooms.size();
+        int doubleBed = doubleBedRooms.size();
+        int bedRooms = singleBed + doubleBed;
+        int baths = bathRooms.size();
+        int all = rooms.size();
+
+        System.out.println("\nStats:");
+
+        //amount of bathrooms with % of all rooms
+        System.out.printf("Bathrooms: %d (%.0f%%)\n", baths, percent(baths, all));
+
+        //amount of bedroosm with % of all rooms
+        System.out.printf("Bedrooms: %d (%.0f%%)\n", bedRooms, percent(bedRooms, all));
+
+        //amount of single bedrooms with % of bedrooms
+        System.out.printf(" -%d single bedrooms (%.0f%%)\n", singleBed, percent(singleBed, bedRooms));
+
+        //amount of double bedrooms with % of bedrooms
+        System.out.printf(" -%d double bedrooms (%.0f%%)\n", doubleBed, percent(doubleBed, bedRooms));
+
+        //total number of beds
+        System.out.printf("Total beds: %d\n", singleBed + (doubleBed*2));
+    }
+
+    /*
+    returns the % value of 'amount' in 'total'
+     */
+    public float percent(int amount, int total) {
+        return (float)amount/(float)total * 100;
     }
 }

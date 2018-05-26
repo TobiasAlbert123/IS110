@@ -5,7 +5,7 @@ public class EksamenException extends RuntimeException {
             System.out.println("Program shutting down fine");
             System.exit(1);
         }
-        System.out.println("Program crashing with exception");
+        System.out.println("Program crashing with exception & input = " + input);
     }
 
     public EksamenException(int index) {

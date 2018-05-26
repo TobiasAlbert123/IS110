@@ -10,13 +10,27 @@ public abstract class BedRoom extends Room  implements BedRoomProperties {
         return amountOfBeds;
     }
 
-    public BedRoom() {
-    }
 
     public void setAmountOfBeds(int amountOfBeds) {
         this.amountOfBeds = amountOfBeds;
     }
 
+    @Override
+    public int hashCode() {
+        return 5;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj.hashCode()==5) {
+            return true;
+        }
+        return false;
+    }
+
+    /*
+    Prints info about the room
+     */
     public void printRoom() {
         super.printRoom();
         System.out.printf("Beds: %d\n", this.amountOfBeds);

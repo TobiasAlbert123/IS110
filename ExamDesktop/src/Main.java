@@ -1,4 +1,3 @@
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -10,12 +9,14 @@ public class Main {
 
         //some commands to happen
         h.setAmountOfRooms(20);
-        //h.printRooms("all");
-        h.printRooms("bathroom");
+        h.printRooms("all");
+        //h.printRooms("bathroom");
         //h.makeSpecificRoom();
+        h.printInfo();
 
         //user is free to use commands
         inputHandler();
+
     }
 
     /*
@@ -24,16 +25,17 @@ public class Main {
     public static void inputHandler() {
         Scanner sc = new Scanner(System.in);
 
+        //loop can be stopped
         boolean running = true;
         while (running) {
             System.out.print(">");
             //takes input from console and converts to lowercase
-            String input = sc.nextLine().toLowerCase();
-            String[] lines = input.split(" ");
-            /*for (int i = 0; i < lines.length; i++) {
-                System.out.println(lines[i]);
+            String lineFromConsole = sc.nextLine().toLowerCase();
+            String[] input = lineFromConsole.split(" ");
+            /*for (int i = 0; i < input.length; i++) {
+                System.out.println(input[i]);
             }*/
-            switch (lines[0]) {
+            switch (input[0]) {
                 //returns current number of rooms
                 case "getrooms":       //todo
                     System.out.println("Rooms: " + h.getAmountOfRooms());
@@ -42,21 +44,33 @@ public class Main {
                 //sets amount of rooms
                 case "setrooms":       //todo
                     try {
-                        h.setAmountOfRooms(Integer.parseInt(lines[1]));
-                    } catch (IndexOutOfBoundsException err) {
+                        h.setAmountOfRooms(Integer.parseInt(input[1]));
+                    } catch (IndexOutOfBoundsException ex) {
                         System.out.println("You did not enter amount of rooms, try again");
+                    } catch (NumberFormatException ex) {
+                        System.out.printf("%s is not a positive integer\n", input[1]);
                     }
                     break;
 
                 //prints a room by index
                 case "printroom":
-                    h.printRoom(Integer.parseInt(lines[1]));
+                    //random exceptions with no use
+                    if (input.length < 2) {
+                        throw new EksamenException("Not 2");
+                    }
+                    if (input.length == 3) {
+                        throw new EksamenException("3rd");
+                    }
+                    if (input.length == 4) {
+                        throw new EksamenException(4);
+                    }
+                    h.printRoom(Integer.parseInt(input[1]));
                     break;
 
                 //prints rooms, either all or all by type
                 case "printrooms":       //todo
-                    if (lines.length >= 2) {
-                        h.printRooms(lines[1]);
+                    if (input.length >= 2) {
+                        h.printRooms(input[1]);
                     } else {
                         h.printRooms("all");
                     }
@@ -69,21 +83,29 @@ public class Main {
 
                 //prints all rooms by type
                 case "printbytype":       //todo
-                    h.printByType(lines[1]);
+                    h.printByType(input[1]);
                     break;
 
                 //edits a room by index
                 case "editroom":
-                    h.editRoom(Integer.parseInt(lines[1]));
+                    h.editRoom(Integer.parseInt(input[1]));
+                    break;
+
+                case "info":
+                    h.printInfo();
                     break;
 
                 //stops program
                 case "stop":
+                    //loop stops -> program stops
                     running = false;
                     System.out.println("Program stopped manually by user");
+
+                    //also causes program to exit
                     System.exit(0);
                     break;
 
+                //lists all available commands (needs to be manually updated)
                 case "help":
                     for (int i = 0; i < ValidCommands().length; i++) {
                         System.out.println(ValidCommands()[i]);
@@ -91,7 +113,9 @@ public class Main {
                     System.out.println("Type 'expand' for more, or enter to go back");
                     String next = sc.nextLine();
                     if (next.equals("expand")) {
-                        System.out.println("pretend this is expanded help");
+                        for (int i = 0; i < ValidCommands().length; i++) {
+                            System.out.println(ValidCommands()[i] + ":\n- expanded text goes here");
+                        }
                         break;
                     }
                     System.out.println("going back");
@@ -104,6 +128,7 @@ public class Main {
         }
     }
 
+    //returns array of valid commands (manually written)
     public static final String[] ValidCommands() {
         String[] Commands = {"setrooms", "getrooms", "printroom", "printrooms", "makespecific", "printbytype", "editroom", "stop", "help"};
         return Commands;

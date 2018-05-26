@@ -4,4 +4,9 @@ public class SingleBedRoom extends BedRoom{
         super("singlebedroom", size, amountOfDoors, amountOfWindows, 1);
     }
 
+    public String getExtraLine() {
+        super.extraLine = "ekstra 1";
+        return super.extraLine;
+    }
+
 }

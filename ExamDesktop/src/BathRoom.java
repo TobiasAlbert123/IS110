@@ -6,14 +6,18 @@ public class BathRoom extends Room {
         this.hasShower = hasShower;
     }
 
-    public BathRoom() {
-        super();
-    }
-
     public void setHasShower(boolean hasShower) {
         this.hasShower = hasShower;
     }
 
+    public String getExtraLine() {
+        super.extraLine = "ekstra bad";
+        return super.extraLine;
+    }
+
+    /*
+    Prints info about the room
+     */
     public void printRoom() {
         super.printRoom();
         System.out.println("Shower: " + this.hasShower);
