@@ -1,11 +1,8 @@
-public class DoubleBedroom extends BedRoom{
+public class DoubleBedRoom extends BedRoom{
 
-    public DoubleBedroom(String type, int size, int amountOfDoors, int amountOfWindows) {
-        super(type, size, amountOfDoors, amountOfWindows, 2);
+    public DoubleBedRoom(int size, int amountOfDoors, int amountOfWindows) {
+        super("doublebedroom", size, amountOfDoors, amountOfWindows, 2);
     }
 
 
-    public void printRoom() {
-        super.printRoom();
-    }
 }

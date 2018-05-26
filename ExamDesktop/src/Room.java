@@ -1,4 +1,6 @@
-public abstract class Room {
+import java.lang.reflect.Method;
+
+public abstract class Room implements RoomProperties{
     private String type;
     private int size;
     private int amountOfDoors;
@@ -14,12 +16,23 @@ public abstract class Room {
     public Room() {
     }
 
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public void setAmountOfDoors(int amountOfDoors) {
+        this.amountOfDoors = amountOfDoors;
+    }
+
+    public void setAmountOfWindows(int amountOfWindows) {
+        this.amountOfWindows = amountOfWindows;
+    }
+
     public String getType() {
         return this.type;
     }
 
     public void printRoom() {
-        System.out.println();
         System.out.printf("Type: %s\n", this.type);
         System.out.printf("Size: %d\n", this.size);
         System.out.printf("Doors: %d\n", this.amountOfDoors);

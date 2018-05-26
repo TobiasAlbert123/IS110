@@ -11,7 +11,10 @@ public abstract class BedRoom extends Room  implements BedRoomProperties {
     }
 
     public BedRoom() {
+    }
 
+    public void setAmountOfBeds(int amountOfBeds) {
+        this.amountOfBeds = amountOfBeds;
     }
 
     public void printRoom() {

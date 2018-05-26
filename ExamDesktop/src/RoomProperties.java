@@ -1,4 +1,4 @@
 public interface RoomProperties {
-
-    public void printRoom();
+    String getType();
+    void printRoom();
 }
