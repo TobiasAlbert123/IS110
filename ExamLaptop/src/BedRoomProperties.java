@@ -1,4 +1,4 @@
 public interface BedRoomProperties {
-    public int getAmountOfBeds();
+    int getAmountOfBeds();
 
 }

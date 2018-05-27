@@ -1,11 +1,12 @@
 public class SingleBedRoom extends BedRoom{
 
-
-    public SingleBedRoom(String type, int size, int amountOfDoors, int amountOfWindows) {
-        super(type, size, amountOfDoors, amountOfWindows, 1);
+    public SingleBedRoom(int size, int amountOfDoors, int amountOfWindows) {
+        super("singlebedroom", size, amountOfDoors, amountOfWindows, 1);
     }
 
-    public void printRoom() {
-        super.printRoom();
+    public String getExtraLine() {
+        super.extraLine = "ekstra 1";
+        return super.extraLine;
     }
+
 }
